@@ -1,16 +1,13 @@
 {
   "name": "celo-impact-jar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "MiniPay-compatible Celo mini app for community impact jars and stablecoin micro-donations.",
+  "description": "MiniPay-compatible Celo mini app for impact jars, stablecoin micro-donations, and AI campaign intelligence.",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0",
-    "compile": "hardhat compile",
-    "deploy:celo": "hardhat run scripts/deploy.ts --network celo",
-    "verify:celo": "hardhat verify --network celo"
+    "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.4",

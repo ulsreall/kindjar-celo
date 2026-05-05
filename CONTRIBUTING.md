@@ -1,29 +1,32 @@
-# Contributing to Celo Impact Jar
+# Contributing
 
-Thanks for your interest in contributing!
+Thanks for checking out Celo Impact Jar.
 
-## Getting Started
-
-1. Fork the repo
-2. Clone your fork
-3. Create a branch: `git checkout -b feature/my-feature`
-4. Make changes
-5. Push and open a PR
-
-## Development
+## Local setup
 
 ```bash
+cp .env.example .env
 npm install
 npm run dev
 ```
 
-## Rules
+## Before opening a PR
 
-- Don't commit `.env` or secrets
-- Don't commit `node_modules`, `dist`, `artifacts`, or `cache`
-- Keep PRs small and focused
-- Test your changes locally before pushing
+```bash
+npm run build
+```
 
-## Security
+## Guidelines
 
-Found a vulnerability? Please report it privately via GitHub Issues (mark as security) or contact the maintainer directly. Do not open a public issue for security bugs.
+- Keep the frontend lightweight and mobile-first.
+- Do not commit `.env`, private keys, `node_modules`, or build output.
+- Prefer small, reviewable changes.
+- Keep user-facing copy clear for non-technical MiniPay users.
+- If adding wallet/contract features, include safety copy and transaction confirmation states.
+
+## Good first issues
+
+- Add campaign history from `Donated` events.
+- Add campaign creation form for owner wallet.
+- Add shareable campaign cards.
+- Improve AI Agent prompts and scoring rules.
