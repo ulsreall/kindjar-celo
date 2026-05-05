@@ -105,6 +105,8 @@ function Hero() {
         </div>
       </div>
       <div className="hero-visual" aria-hidden="true">
+        <div className="orbit orbit-one" />
+        <div className="orbit orbit-two" />
         <div className="phone-frame">
           <div className="phone-top" />
           <div className="phone-card active">
@@ -123,6 +125,10 @@ function Hero() {
         <div className="float-chip chip-one">MiniPay</div>
         <div className="float-chip chip-two">Public proof</div>
       </div>
+      <a className="scroll-cue" href="#donate" aria-label="Scroll to donation form">
+        <span>Choose a cause below</span>
+        <strong>↓</strong>
+      </a>
     </header>
   );
 }
