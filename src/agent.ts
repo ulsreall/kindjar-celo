@@ -190,7 +190,7 @@ function getJarAdvice(ctx: AgentContext, query: string): string {
   }
 
   if (q.includes('what') || q.includes('apa') || q.includes('tentang') || q.includes('about') || q.includes('siapa')) {
-    return `🌱 **What is KindJar?**\n\nA MiniPay-compatible micro-donation platform on Celo. Think of it as "tip jars for real-world impact" — small stablecoin donations that fund local campaigns.\n\n**Key features:**\n• Works on MiniPay (14M+ users)\n• Donate with cUSD, USDm, USDC, USDT\n• Every donation is onchain & transparent\n• 3 steps: Pick jar → Set amount → Send\n\nBuilt for **Celo Proof of Ship** 🚢`;
+    return `🌱 **What is KindJar?**\n\nA simple donation app on Celo. Think of it like a public tip jar for local causes — food help, school supplies, community goods, and other real needs.\n\n**Key features:**\n• Works with MiniPay\n• Donate using stablecoins like cUSD or USDm\n• Every donation has public proof on Celo\n• 3 steps: pick a jar → choose amount → confirm in wallet\n\nBuilt for **Celo Proof of Ship** 🚢`;
   }
 
   // Default: full analysis
@@ -199,7 +199,7 @@ function getJarAdvice(ctx: AgentContext, query: string): string {
 
 // ─── Main Agent Function ────────────────────────────────────────────
 
-const WELCOME_MSG = `👋 **Hi! I'm the KindJar AI Agent.**
+const WELCOME_MSG = `👋 **Hi! I'm the KindJar AI helper.**
 
 I help you make smarter donations on Celo. Here's what I can do:
 
@@ -235,7 +235,7 @@ export function createAgent() {
 
     // Quick commands
     if (q === 'hi' || q === 'hello' || q === 'gm' || q === 'hey' || q === 'halo') {
-      content = `Hey! 👋 Welcome to KindJar. I'm your AI donation advisor.\n\nWhat would you like to do?\n• 📊 See campaign analysis\n• 🌟 Get jar recommendation\n• 🎯 Learn how to donate\n• 🔒 Check if it's safe`;
+      content = `Hey! 👋 Welcome to KindJar. I can help you choose a jar and understand how donations work.\n\nWhat would you like to do?\n• 📊 See jar suggestions\n• 🌟 Pick a jar\n• 🎯 How to donate\n• 🔒 Check safety`;
       suggestions = ['Analyze all campaigns', 'Which jar should I donate to?', 'How do I donate?', 'Is this safe?'];
     } else if (q.includes('analyz') || q.includes('analys') || q.includes('analisis') || q.includes('report') || q.includes('overview') || q.includes('all')) {
       content = generateAnalysis(ctx);

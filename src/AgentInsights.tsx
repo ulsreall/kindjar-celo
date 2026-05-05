@@ -17,12 +17,12 @@ function scoreCampaign(c: Campaign): AgentInsight {
 
   if (c.active) {
     score += 15;
-    analysis.push('✅ Currently active and accepting donations');
+    analysis.push('✅ Open now and accepting donations');
   }
 
   if (raised > 100) {
     score += 20;
-    analysis.push(`💰 Strong community backing with ${raised.toFixed(1)} cUSD raised`);
+    analysis.push(`💰 Strong support with ${raised.toFixed(1)} cUSD raised`);
   } else if (raised > 30) {
     score += 12;
     analysis.push(`📈 Growing support — ${raised.toFixed(1)} cUSD raised so far`);
@@ -30,21 +30,21 @@ function scoreCampaign(c: Campaign): AgentInsight {
     score += 5;
     analysis.push(`🌱 Early stage — ${raised.toFixed(1)} cUSD raised, room to grow`);
   } else {
-    analysis.push(`🆕 Brand new campaign — be the first donor!`);
+    analysis.push(`🆕 New jar — you could be the first donor!`);
   }
 
   const name = c.name.toLowerCase();
   if (name.includes('food') || name.includes('water') || name.includes('health')) {
     score += 12;
-    analysis.push('🎯 Essential needs — high real-world impact potential');
+    analysis.push('🎯 Supports basic needs with clear local impact');
   }
   if (name.includes('school') || name.includes('education') || name.includes('learn')) {
     score += 10;
-    analysis.push('📚 Education focus — long-term community benefit');
+    analysis.push('📚 Education support with long-term value');
   }
   if (name.includes('community') || name.includes('public') || name.includes('local')) {
     score += 5;
-    analysis.push('🌍 Community-oriented — benefits local ecosystem');
+    analysis.push('🌍 Community-focused and easy to understand');
   }
 
   let badge = '🌱';
@@ -82,8 +82,8 @@ export default function AgentInsights({ campaigns }: Props) {
       <div className="agent-section-header">
         <div>
           <div className="agent-section-badge">🤖 AI Agent</div>
-          <h2>Campaign Intelligence</h2>
-          <p className="subtitle">Onchain AI analysis of all active impact jars. Scores update based on real donation data.</p>
+          <h2>AI guide for donors</h2>
+          <p className="subtitle">A simple helper that explains which jars are active, how much support they have, and why people might donate.</p>
         </div>
       </div>
 
@@ -92,22 +92,22 @@ export default function AgentInsights({ campaigns }: Props) {
         <div className="agent-stat">
           <div className="agent-stat-icon">📊</div>
           <div className="agent-stat-value">{avgScore}</div>
-          <div className="agent-stat-label">Avg Score</div>
+          <div className="agent-stat-label">Avg rating</div>
         </div>
         <div className="agent-stat">
           <div className="agent-stat-icon">🎯</div>
           <div className="agent-stat-value">{activeCount}</div>
-          <div className="agent-stat-label">Active Jars</div>
+          <div className="agent-stat-label">Open causes</div>
         </div>
         <div className="agent-stat">
           <div className="agent-stat-icon">💰</div>
-          <div className="agent-stat-value">{totalRaised.toFixed(1)}</div>
-          <div className="agent-stat-label">Total cUSD</div>
+          <div className="agent-stat-value agent-stat-value-small">{totalRaised.toFixed(1)} cUSD</div>
+          <div className="agent-stat-label">Donated</div>
         </div>
         <div className="agent-stat">
           <div className="agent-stat-icon">⛓️</div>
           <div className="agent-stat-value">100%</div>
-          <div className="agent-stat-label">Onchain</div>
+          <div className="agent-stat-label">Public proof</div>
         </div>
       </div>
 
@@ -173,18 +173,18 @@ export default function AgentInsights({ campaigns }: Props) {
                 />
               </div>
               <div className="agent-detail-score-label">
-                Impact Score: <strong>{current.score}/100</strong>
+                Donor rating: <strong>{current.score}/100</strong>
               </div>
             </div>
             <div className="agent-detail-analysis">
-              <div className="agent-detail-title">🔍 Agent Analysis</div>
+              <div className="agent-detail-title">Why this jar stands out</div>
               {current.analysis.map((a, i) => (
                 <div key={i} className="agent-detail-item">{a}</div>
               ))}
             </div>
             <div className="agent-detail-meta">
               <div className="agent-meta-item">
-                <span className="agent-meta-label">Total Raised</span>
+                <span className="agent-meta-label">Raised so far</span>
                 <span className="agent-meta-value">{formatUnits(current.campaign.totalRaised, 18)} cUSD</span>
               </div>
               <div className="agent-meta-item">
@@ -192,14 +192,14 @@ export default function AgentInsights({ campaigns }: Props) {
                 <span className="agent-meta-value">{current.campaign.active ? '🟢 Active' : '🔴 Inactive'}</span>
               </div>
               <div className="agent-meta-item">
-                <span className="agent-meta-label">Chain</span>
+                <span className="agent-meta-label">Network</span>
                 <span className="agent-meta-value">Celo Mainnet</span>
               </div>
             </div>
             <div className="agent-detail-verdict">
-              {current.score >= 80 && '🌟 **Top Pick!** This jar has strong community backing and high impact potential. Recommended for donors.'}
-              {current.score >= 60 && current.score < 80 && '💪 **Solid Choice.** This jar is performing well with good community support.'}
-              {current.score < 60 && '🌱 **Growing.** Early-stage jar with potential. Your donation could make a big difference here.'}
+              {current.score >= 80 && '🌟 Top pick. This jar already has strong support and a clear reason to donate.'}
+              {current.score >= 60 && current.score < 80 && '💪 Good choice. This jar is active and has growing support.'}
+              {current.score < 60 && '🌱 Early jar. Your donation can help this cause get started.'}
             </div>
           </div>
         )}
@@ -209,23 +209,23 @@ export default function AgentInsights({ campaigns }: Props) {
       <div className="agent-capabilities">
         <div className="agent-cap">
           <div className="agent-cap-icon">📊</div>
-          <strong>Onchain Scoring</strong>
-          <span>Real-time campaign analysis based on actual onchain donation data</span>
+          <strong>Simple ratings</strong>
+          <span>Ratings use donation totals and active status, not hidden data</span>
         </div>
         <div className="agent-cap">
           <div className="agent-cap-icon">🎯</div>
-          <strong>Smart Recommendations</strong>
-          <span>Impact-weighted rankings that help donors choose the right jar</span>
+          <strong>Clear suggestions</strong>
+          <span>Helps donors choose a jar without reading technical details</span>
         </div>
         <div className="agent-cap">
           <div className="agent-cap-icon">🔍</div>
-          <strong>Transparency Check</strong>
-          <span>Every metric is verifiable on Celoscan — no black box</span>
+          <strong>Proof check</strong>
+          <span>Links and totals can be checked on Celoscan</span>
         </div>
         <div className="agent-cap">
           <div className="agent-cap-icon">💡</div>
-          <strong>Donation Guidance</strong>
-          <span>Step-by-step help for MiniPay and Celo wallet users</span>
+          <strong>Step-by-step help</strong>
+          <span>Guides new users through MiniPay or a Celo wallet</span>
         </div>
       </div>
     </section>

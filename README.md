@@ -4,7 +4,7 @@
 
 A MiniPay-compatible micro-donation dApp for local impact campaigns on Celo. Users can support community jars with stablecoins, while the built-in AI Agent helps donors understand campaign signals, safety, and donation flow.
 
-**Live app:** https://celo-impact-jar.vercel.app/  
+**Live app:** https://kindjar-celo.vercel.app/  
 **Contract:** [`0xf2b690a0b0cab089ccb84beec5b40afcb9661040`](https://celoscan.io/address/0xf2b690a0b0cab089ccb84beec5b40afcb9661040)  
 **Network:** Celo Mainnet `42220`
 
@@ -81,8 +81,8 @@ These are already covered in `.gitignore`.
 ## Local development
 
 ```bash
-git clone https://github.com/ulsreall/celo-impact-jar.git
-cd celo-impact-jar
+git clone https://github.com/ulsreall/kindjar-celo.git
+cd kindjar-celo
 cp .env.example .env
 npm install
 npm run dev

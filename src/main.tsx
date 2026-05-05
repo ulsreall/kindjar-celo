@@ -72,11 +72,11 @@ function Nav({ isMiniPay, account, onConnect }: { isMiniPay: boolean; account: A
       </a>
       <div className="nav-links">
         <a href="#donate">Donate</a>
-        <a href="#agent" className="agent-link">AI Agent</a>
-        <a href="#about">About</a>
-        <a href="https://github.com/ulsreall/celo-impact-jar" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="#agent" className="agent-link">AI helper</a>
+        <a href="#about">How it works</a>
+        <a href="https://github.com/ulsreall/kindjar-celo" target="_blank" rel="noreferrer">GitHub</a>
         <button className="btn-primary nav-wallet" onClick={onConnect}>
-          {account ? shortAddress(account) : isMiniPay ? 'MiniPay Ready' : 'Connect Wallet'}
+          {account ? shortAddress(account) : isMiniPay ? 'Works with MiniPay' : 'Connect Wallet'}
         </button>
       </div>
     </nav>
@@ -88,20 +88,20 @@ function Hero() {
     <header className="hero" id="top">
       <div className="hero-grid-bg" />
       <div className="hero-copy">
-        <div className="badge"><span>🚢</span> Built for Celo Proof of Ship</div>
-        <h1>Micro-donations for real local impact.</h1>
+        <div className="badge"><span>🌿</span> Simple giving on Celo</div>
+        <h1>Give a little. Help someone nearby.</h1>
         <p>
-          A MiniPay-compatible Celo mini app where communities fund transparent impact jars with stablecoins — guided by an AI donation advisor.
+          KindJar helps people send small stablecoin donations to local causes. Pick a jar, choose an amount, and verify the donation on Celo.
         </p>
         <div className="hero-actions">
-          <a className="btn-cta" href="#donate">Start donating</a>
-          <a className="btn-outline" href="#agent">Ask the AI Agent</a>
+          <a className="btn-cta" href="#donate">Donate now</a>
+          <a className="btn-outline" href="#agent">Ask the AI helper</a>
         </div>
         <div className="trust-row" aria-label="Project trust indicators">
-          <span>✓ Celo Mainnet</span>
-          <span>✓ MiniPay-ready</span>
-          <span>✓ Open-source</span>
-          <span>✓ Self-custody</span>
+          <span>✓ Runs on Celo</span>
+          <span>✓ MiniPay friendly</span>
+          <span>✓ Public proof</span>
+          <span>✓ You control the wallet</span>
         </div>
       </div>
       <div className="hero-visual" aria-hidden="true">
@@ -109,19 +109,19 @@ function Hero() {
           <div className="phone-top" />
           <div className="phone-card active">
             <span className="mini-label">KindJar</span>
-            <strong>Community Food</strong>
+            <strong>Food for neighbors</strong>
             <div className="mini-progress"><span style={{ width: '82%' }} /></div>
             <small>128.75 cUSD raised</small>
           </div>
           <div className="phone-card">
-            <span className="mini-label">AI score</span>
+            <span className="mini-label">AI helper</span>
             <strong>100 / 100</strong>
-            <small>Top pick for donors</small>
+            <small>Clear reason to support</small>
           </div>
-          <div className="phone-action">Send 1 cUSD →</div>
+          <div className="phone-action">Donate 1 cUSD →</div>
         </div>
         <div className="float-chip chip-one">MiniPay</div>
-        <div className="float-chip chip-two">AI Agent</div>
+        <div className="float-chip chip-two">Public proof</div>
       </div>
     </header>
   );
@@ -132,10 +132,10 @@ function Stats({ campaigns }: { campaigns: Campaign[] }) {
   const activeCount = campaigns.filter((c) => c.active).length;
   return (
     <section className="stats" aria-label="Impact stats">
-      <div className="stat-card"><div className="stat-value">{activeCount}</div><div className="stat-label">Active Jars</div></div>
-      <div className="stat-card"><div className="stat-value">{totalRaised.toFixed(1)}</div><div className="stat-label">cUSD Raised</div></div>
-      <div className="stat-card"><div className="stat-value">14M+</div><div className="stat-label">MiniPay Users</div></div>
-      <div className="stat-card"><div className="stat-value">100%</div><div className="stat-label">Onchain Proof</div></div>
+      <div className="stat-card"><div className="stat-value">{activeCount}</div><div className="stat-label">Open causes</div></div>
+      <div className="stat-card"><div className="stat-value stat-value-small">{totalRaised.toFixed(1)} cUSD</div><div className="stat-label">Donated so far</div></div>
+      <div className="stat-card"><div className="stat-value">14M+</div><div className="stat-label">MiniPay users</div></div>
+      <div className="stat-card"><div className="stat-value">100%</div><div className="stat-label">Public proof</div></div>
     </section>
   );
 }
@@ -165,14 +165,14 @@ function DonatePanel({
 }) {
   return (
     <section className="panel donate-panel" id="donate">
-      <div className="section-kicker">Stablecoin micro-giving</div>
+      <div className="section-kicker">Make a donation</div>
       <div className="donate-grid">
         <div className="donate-form">
-          <h2>Support an impact jar</h2>
-          <p className="subtitle">Choose a local campaign and send a transparent micro-donation with cUSD/USDm.</p>
+          <h2>Choose who to support</h2>
+          <p className="subtitle">Pick a cause, choose an amount, and confirm it from your wallet. Every donation can be checked on Celo.</p>
 
           <label>
-            Campaign
+            Cause
             <select value={selectedCampaign.toString()} onChange={(e) => setSelectedCampaign(BigInt(e.target.value))}>
               {campaigns.map((c) => <option key={c.id.toString()} value={c.id.toString()}>{c.name}</option>)}
             </select>
@@ -187,24 +187,24 @@ function DonatePanel({
           </div>
 
           <label>
-            Custom amount
+            Other amount
             <input value={amount} onChange={(e) => setAmount(e.target.value)} inputMode="decimal" placeholder="1.0" />
           </label>
           <label>
-            Public note
-            <input value={note} onChange={(e) => setNote(e.target.value)} maxLength={80} placeholder="Your message..." />
+            Message (optional)
+            <input value={note} onChange={(e) => setNote(e.target.value)} maxLength={80} placeholder="Good luck, hope this helps" />
           </label>
-          <button className="btn-donate" onClick={donate}>Send Micro-Donation</button>
+          <button className="btn-donate" onClick={donate}>Donate now</button>
           <div className="status-box">{status}</div>
         </div>
 
         <aside className="jar-card">
-          <div className="jar-eyebrow">Selected Jar</div>
+          <div className="jar-eyebrow">Where your donation goes</div>
           <h3>{selected?.name}</h3>
           <p>{selected?.description}</p>
           <div className="jar-raised">{formatUnits(selected?.totalRaised || 0n, 18)}</div>
-          <div className="jar-token">cUSD / USDm raised on Celo</div>
-          <div className="jar-mode"><span className="dot-live" />{isConfigured ? 'Live on Celo Mainnet' : 'Demo mode'}</div>
+          <div className="jar-token">raised so far</div>
+          <div className="jar-mode"><span className="dot-live" />{isConfigured ? 'Verified on Celo' : 'Demo mode'}</div>
         </aside>
       </div>
     </section>
@@ -214,14 +214,14 @@ function DonatePanel({
 function About() {
   return (
     <section className="panel" id="about">
-      <div className="section-kicker">Why it matters</div>
-      <h2>Built for practical Celo usage, not just a demo.</h2>
-      <p className="subtitle">KindJar focuses on small payments, transparent public-good funding, and mobile-first UX for MiniPay users.</p>
+      <div className="section-kicker">Why use KindJar</div>
+      <h2>Small donations should feel simple and trustworthy.</h2>
+      <p className="subtitle">KindJar turns community support into clear steps: choose a cause, donate from your wallet, and see proof onchain.</p>
       <div className="features">
-        <div className="feature-card"><div className="feature-icon">📱</div><strong>MiniPay Ready</strong><span>Detects MiniPay and reduces wallet friction for mobile-first donors.</span></div>
-        <div className="feature-card"><div className="feature-icon">🤖</div><strong>AI Donation Advisor</strong><span>Ranks jars, explains risk, and guides users with campaign intelligence.</span></div>
-        <div className="feature-card"><div className="feature-icon">⛓️</div><strong>Onchain Proof</strong><span>Every donation is transparent, verifiable, and linked to Celo mainnet data.</span></div>
-        <div className="feature-card"><div className="feature-icon">🌍</div><strong>Local Impact</strong><span>Useful for food aid, education supplies, community goods, and creator support.</span></div>
+        <div className="feature-card"><div className="feature-icon">📱</div><strong>Works with MiniPay</strong><span>Open inside MiniPay and donate from a mobile wallet flow.</span></div>
+        <div className="feature-card"><div className="feature-icon">🤖</div><strong>Helpful AI guide</strong><span>Explains which causes are active and why they may be worth supporting.</span></div>
+        <div className="feature-card"><div className="feature-icon">⛓️</div><strong>Public receipt</strong><span>Donation totals and contract links are public, so people can check them.</span></div>
+        <div className="feature-card"><div className="feature-icon">🌍</div><strong>Real local needs</strong><span>Made for food help, school supplies, community goods, and public support.</span></div>
       </div>
     </section>
   );
@@ -230,12 +230,12 @@ function About() {
 function HowItWorks() {
   return (
     <section className="panel">
-      <div className="section-kicker">Flow</div>
-      <h2>Three steps from donation to impact.</h2>
+      <div className="section-kicker">Simple flow</div>
+      <h2>How it works in 3 simple steps.</h2>
       <div className="steps">
-        <div className="step-card"><div className="step-num">1</div><h4>Choose a Jar</h4><p>Pick a campaign or ask the AI Agent which jar has the strongest impact signal.</p></div>
-        <div className="step-card"><div className="step-num">2</div><h4>Send Stablecoin</h4><p>Donate cUSD/USDm using MiniPay or any injected Celo wallet. You approve every transaction.</p></div>
-        <div className="step-card"><div className="step-num">3</div><h4>Verify Onchain</h4><p>Donation events and totals are transparent on Celo, making the impact trail public.</p></div>
+        <div className="step-card"><div className="step-num">1</div><h4>Pick a cause</h4><p>Choose a cause you want to support, or ask the AI helper for a suggestion.</p></div>
+        <div className="step-card"><div className="step-num">2</div><h4>Send a small amount</h4><p>Use MiniPay or a Celo wallet. Your wallet asks you to confirm before anything is sent.</p></div>
+        <div className="step-card"><div className="step-num">3</div><h4>Check the proof</h4><p>The donation is recorded on Celo, so the result can be checked publicly.</p></div>
       </div>
     </section>
   );
@@ -244,14 +244,14 @@ function HowItWorks() {
 function ContractInfo() {
   return (
     <section className="panel">
-      <div className="section-kicker">Verification</div>
-      <h2>Contract & deployment</h2>
-      <p className="subtitle">Public infrastructure for Celo Proof of Ship submission.</p>
+      <div className="section-kicker">Proof & links</div>
+      <h2>Project verification</h2>
+      <p className="subtitle">For donors, builders, and reviewers who want to check the project directly.</p>
       <div className="contract-info">
         <div className="info-item"><div className="info-label">Network</div><div className="info-value">Celo Mainnet (42220)</div></div>
         <div className="info-item"><div className="info-label">Contract</div><div className="info-value"><a href={explorerUrl} target="_blank" rel="noreferrer">{CONTRACT_ADDRESS}</a></div></div>
         <div className="info-item"><div className="info-label">Default Token</div><div className="info-value"><a href={`https://celoscan.io/address/${TOKEN_ADDRESS}`} target="_blank" rel="noreferrer">USDm / cUSD compatible</a></div></div>
-        <div className="info-item"><div className="info-label">Source</div><div className="info-value"><a href="https://github.com/ulsreall/celo-impact-jar" target="_blank" rel="noreferrer">Open-source on GitHub</a></div></div>
+        <div className="info-item"><div className="info-label">Source</div><div className="info-value"><a href="https://github.com/ulsreall/kindjar-celo" target="_blank" rel="noreferrer">Open-source on GitHub</a></div></div>
       </div>
     </section>
   );
@@ -263,7 +263,7 @@ function App() {
   const [selectedCampaign, setSelectedCampaign] = useState<bigint>(0n);
   const [amount, setAmount] = useState('1');
   const [note, setNote] = useState('MiniPay micro-donation');
-  const [status, setStatus] = useState('Ready. Connect MiniPay or any injected Celo wallet.');
+  const [status, setStatus] = useState('Ready. Connect MiniPay or another Celo wallet to donate.');
   const [isMiniPay, setIsMiniPay] = useState(false);
 
   const selected = useMemo(() => campaigns.find((c) => c.id === selectedCampaign) || campaigns[0], [campaigns, selectedCampaign]);
@@ -276,11 +276,11 @@ function App() {
   }, []);
 
   async function connectWallet() {
-    if (!window.ethereum) { setStatus('No injected wallet found. Open inside MiniPay or use a Celo browser wallet.'); return; }
+    if (!window.ethereum) { setStatus('Wallet not found. Open this app inside MiniPay or use a Celo wallet browser.'); return; }
     const walletClient = createWalletClient({ chain: celo, transport: custom(window.ethereum) });
     const [address] = await walletClient.requestAddresses();
     setAccount(address);
-    setStatus(window.ethereum.isMiniPay ? 'MiniPay detected. Wallet connected automatically.' : 'Wallet connected.');
+    setStatus(window.ethereum.isMiniPay ? 'MiniPay found. Wallet connected.' : 'Wallet connected.');
   }
 
   async function loadCampaigns() {
@@ -293,22 +293,22 @@ function App() {
         }),
       );
       if (loaded.length) { setCampaigns(loaded); setSelectedCampaign(loaded[0].id); }
-    } catch (e) { console.error(e); setStatus('Could not load contract campaigns yet. Showing fallback demo data.'); }
+    } catch (e) { console.error(e); setStatus('Could not load live jars yet. Showing sample jars for now.'); }
   }
 
   async function donate() {
-    if (!isConfigured) { setStatus('Demo mode: set VITE_IMPACT_JAR_ADDRESS before real donations.'); return; }
+    if (!isConfigured) { setStatus('Demo mode: add the contract address before accepting real donations.'); return; }
     if (!window.ethereum || !account) { await connectWallet(); return; }
     const value = parseUnits(amount || '0', 18);
-    if (value <= 0n) { setStatus('Amount must be greater than zero.'); return; }
+    if (value <= 0n) { setStatus('Please enter an amount above 0.'); return; }
     const walletClient = createWalletClient({ chain: celo, transport: custom(window.ethereum) });
-    setStatus('Step 1/2: approving stablecoin spend...');
+    setStatus('Step 1/2: approve the token in your wallet...');
     const approveHash = await walletClient.writeContract({ account, address: TOKEN_ADDRESS, abi: ERC20_ABI, functionName: 'approve', args: [CONTRACT_ADDRESS, value] });
     await publicClient.waitForTransactionReceipt({ hash: approveHash });
-    setStatus('Step 2/2: sending donation to ImpactJar...');
+    setStatus('Step 2/2: sending your donation...');
     const donateHash = await walletClient.writeContract({ account, address: CONTRACT_ADDRESS, abi: IMPACT_JAR_ABI, functionName: 'donate', args: [selectedCampaign, TOKEN_ADDRESS, value, note] });
     await publicClient.waitForTransactionReceipt({ hash: donateHash });
-    setStatus(`Donation shipped on Celo: ${donateHash}`);
+    setStatus(`Donation confirmed on Celo: ${donateHash}`);
     await loadCampaigns();
   }
 
@@ -336,9 +336,9 @@ function App() {
         <ContractInfo />
       </main>
       <footer className="footer">
-        <div className="footer-left">KindJar © 2026 — Built for Celo Proof of Ship</div>
+        <div className="footer-left">KindJar © 2026 — Small giving, real local impact</div>
         <div className="footer-links">
-          <a href="https://github.com/ulsreall/celo-impact-jar" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://github.com/ulsreall/kindjar-celo" target="_blank" rel="noreferrer">GitHub</a>
           <a href={explorerUrl} target="_blank" rel="noreferrer">Contract</a>
           <a href="https://talent.app/~/earn/celo-proof-of-ship" target="_blank" rel="noreferrer">Proof of Ship</a>
           <a href="https://docs.celo.org" target="_blank" rel="noreferrer">Celo Docs</a>
