@@ -1,0 +1,6 @@
+{
+  "framework": "vite",
+  "buildCommand": "vite build",
+  "outputDirectory": "dist",
+  "installCommand": "npx -y npm@10.9.2 install --legacy-peer-deps"
+}
